@@ -1,0 +1,138 @@
+{
+  "theme": "Dark",
+  "archetype": "Archetype 4 (Swiss & High-Contrast) customized for Industrial Tech",
+  "mood": "Authoritative, Secure, High-Tech, Professional B2B",
+  "typography": {
+    "fonts": {
+      "heading": "Cabinet Grotesk",
+      "body": "Manrope",
+      "mono": "JetBrains Mono"
+    },
+    "hierarchy": {
+      "h1": "text-5xl sm:text-6xl+ font-black tracking-tighter leading-none",
+      "h2": "text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight",
+      "h3": "text-xl sm:text-2xl font-bold tracking-tight",
+      "body": "text-base sm:text-lg font-medium leading-relaxed text-slate-300",
+      "label": "text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-blue-500"
+    }
+  },
+  "colors": {
+    "background": {
+      "primary": "#0A0A0A",
+      "secondary": "#111111",
+      "tertiary": "#1A1A1A",
+      "card": "#141414"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1AA",
+      "muted": "#71717A"
+    },
+    "brand": {
+      "safety_orange": "#EA580C",
+      "tech_blue": "#2563EB",
+      "alert_yellow": "#EAB308",
+      "success_green": "#22C55E"
+    },
+    "accents": {
+      "border": "#27272A",
+      "glow_blue": "rgba(37, 99, 235, 0.5)",
+      "glow_orange": "rgba(234, 88, 12, 0.5)"
+    }
+  },
+  "layout_and_spacing": {
+    "spacing_scale": "Generous spacing. p-6 or p-8 for cards. py-24 or py-32 for sections.",
+    "grid_system": "Bento Grid (Tetris Mode) for Features/Problems, Strict 3-column for Pricing. Always use grid-cols-1 on mobile.",
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-orange-600 hover:bg-orange-500 text-white font-bold py-4 px-8 rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(234,88,12,0.4)] hover:shadow-[0_0_30px_rgba(234,88,12,0.6)]",
+      "secondary": "bg-transparent border border-blue-600 text-blue-500 hover:bg-blue-900/30 hover:text-blue-400 font-bold py-4 px-8 rounded-md transition-all duration-300",
+      "whatsapp": "fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 z-50 flex items-center justify-center cursor-pointer"
+    },
+    "cards": {
+      "default": "bg-[#141414] border border-zinc-800 rounded-xl p-8 hover:-translate-y-1 hover:border-zinc-700 transition-all duration-300 relative overflow-hidden",
+      "glass": "bg-black/60 backdrop-blur-xl border border-white/10 rounded-xl p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+    },
+    "header": {
+      "style": "fixed top-0 w-full z-50 bg-black/80 backdrop-blur-xl border-b border-white/10 transition-all duration-300"
+    }
+  },
+  "visual_enhancers": {
+    "borders": "1px solid rgba(255,255,255,0.05). Use 'Tracing Beam' effect on primary pricing card.",
+    "shadows": "Ambient glows behind key tech elements. No soft gray drop-shadows; use sharp contrast or colored glows.",
+    "textures": "Subtle noise overlay on dark backgrounds to remove digital flatness."
+  },
+  "animations": {
+    "scroll": "Use Lenis for smooth scrolling (momentum).",
+    "entrance": "Staggered fade-up for grid items. Use framer-motion.",
+    "micro_interactions": "Hover states must have higher contrast and slight scale. WhatsApp button should have a slow pulse."
+  },
+  "media": {
+    "hero_background": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/b892024f-d454-4f6b-8cd4-0af096ea446a/images/332baa2f0044e744acdf6235e849948da2e56262a21e36693dd3073f7a6ceec7.png",
+      "description": "Abstract tech background for hero section"
+    },
+    "hero_image": {
+      "url": "https://static.prod-images.emergentagent.com/jobs/b892024f-d454-4f6b-8cd4-0af096ea446a/images/872f6e442c5f5e04ebe3a149e765b052aebae621346b261f1575f780d4859d63.png",
+      "description": "Industrial worker with facial recognition mesh overlay, placing this on the right side of the hero."
+    },
+    "problem_section_images": [
+      {
+        "url": "https://images.pexels.com/photos/4981771/pexels-photo-4981771.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Worker with generic PPE for problem section background or card"
+      },
+      {
+        "url": "https://images.pexels.com/photos/209230/pexels-photo-209230.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Industrial warehouse indicating management chaos without the software"
+      }
+    ],
+    "icons": {
+      "library": "lucide-react",
+      "style": "Use robust, technical icons. Stroke width 2."
+    }
+  },
+  "page_structure": [
+    {
+      "section": "Header",
+      "details": "Logo left, Links center, 'Fale Conosco' Button right. Glassmorphism."
+    },
+    {
+      "section": "Hero",
+      "details": "H1 text left with Orange highlighted keywords. Primary CTA 'Agendar Demonstração'. Right side floating hero_image."
+    },
+    {
+      "section": "Problem (Dor do Cliente)",
+      "details": "Bento Grid showing compliance risks, manual check delays, lost PPE. Use dark red/orange subtle tints."
+    },
+    {
+      "section": "Solution (Como Funciona)",
+      "details": "Steps: 1. Cadastro, 2. Reconhecimento, 3. Liberação. Use connecting tech lines."
+    },
+    {
+      "section": "Differentiators & Benefits",
+      "details": "Cards with Tech Blue icons. Highlighting offline mode, speed, and real-time dashboard."
+    },
+    {
+      "section": "Pricing",
+      "details": "3 Cards. Middle 'Pro' plan scaled up slightly with an Orange glowing border."
+    },
+    {
+      "section": "Contact Form & Footer",
+      "details": "Clean Shadcn form. Darkest background (#050505)."
+    },
+    {
+      "section": "Floating Action Button",
+      "details": "WhatsApp icon fixed bottom right."
+    }
+  ],
+  "instructions_to_main_agent": [
+    "Use pure HTML/Tailwind for structural page layouts (Hero, Bento grids) to allow overlapping and creative positioning. Avoid standard Card components for big sections.",
+    "Use Shadcn UI for the Contact Form, Inputs, and basic Buttons, but strip the Vercel-look to match the high-contrast dark theme.",
+    "Apply `data-testid` to all interactive elements (e.g., `data-testid=\"hero-cta-button\"`).",
+    "Ensure the layout is completely mobile responsive, stacking grids to 1 column on small screens.",
+    "Do NOT use 'Inter' font for headings. Apply 'Cabinet Grotesk' via font-sans or custom font face.",
+    "Rely exclusively on the provided media URLs. Do not insert placeholders like 'via.placeholder.com'."
+  ]
+}
