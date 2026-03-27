@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 
 // Configuração
-const API_BASE = process.env.REACT_APP_BACKEND_URL || '';
+const API_BASE = '';  // Usa URL relativa para funcionar com o ingress
 const WHATSAPP_NUMBER = '5511999999999';
 const WHATSAPP_MESSAGE = 'Olá! Gostaria de saber mais sobre o GestorEPI.';
 

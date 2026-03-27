@@ -2,6 +2,7 @@
   "name": "gestorepi-landing",
   "version": "1.0.0",
   "private": true,
+  "proxy": "http://localhost:8001",
   "description": "Landing page do GestorEPI - Site de vendas",
   "dependencies": {
     "lucide-react": "^0.507.0",
