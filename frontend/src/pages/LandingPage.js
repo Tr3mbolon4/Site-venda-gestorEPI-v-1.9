@@ -9,7 +9,7 @@ import {
 
 // Configuração
 const API_BASE = '';  // Usa URL relativa para funcionar com o ingress
-const WHATSAPP_NUMBER = '5511999999999';
+const WHATSAPP_NUMBER = '5511940163275';
 const WHATSAPP_MESSAGE = 'Olá! Gostaria de saber mais sobre o GestorEPI.';
 
 // Screenshots do sistema
