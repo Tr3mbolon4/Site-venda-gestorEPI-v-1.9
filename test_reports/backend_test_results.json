@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-03-27T23:22:11.259750",
+  "total_tests": 4,
+  "passed_tests": 3,
+  "success_rate": "75.0%",
+  "results": [
+    {
+      "test": "Health Check Endpoint",
+      "success": true,
+      "details": "Response: {'status': 'healthy', 'service': 'gestorepi-landing'}",
+      "timestamp": "2026-03-27T23:22:11.006857"
+    },
+    {
+      "test": "Contact Form - Valid Data",
+      "success": true,
+      "details": "Response: {'status': 'success', 'message': 'Mensagem enviada com sucesso!', 'email_id': 'bda36763-33b8-4d32-bba6-b9bd7e4029f7'}",
+      "timestamp": "2026-03-27T23:22:11.256612"
+    },
+    {
+      "test": "Contact Form - Missing Required Fields",
+      "success": true,
+      "details": "Status code: 422, Response: {\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\",\"empresa\"],\"msg\":\"Field required\",\"input\":{\"nome\":\"Jo\u00e3o Silva\"}},{\"type\":\"missing\",\"loc\":[\"body\",\"telefone\"],\"msg\":\"Field required\",\"input\":{\"nome\":\"Jo\u00e3o Silva\"}}]}",
+      "timestamp": "2026-03-27T23:22:11.258407"
+    },
+    {
+      "test": "CORS Headers",
+      "success": false,
+      "details": "CORS headers found: []",
+      "timestamp": "2026-03-27T23:22:11.259613"
+    }
+  ]
+}

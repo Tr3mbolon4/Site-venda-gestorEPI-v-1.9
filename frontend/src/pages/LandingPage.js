@@ -2,18 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { 
   Shield, CheckCircle, AlertTriangle, Users, FileText, 
   Clock, Building2, Scan, BarChart3, Bell, Lock, Globe,
-  ChevronRight, Phone, Mail, MessageCircle, Menu, X,
+  ChevronRight, Mail, MessageCircle, Menu, X,
   ArrowRight, Zap, Target, Award, TrendingUp, Eye,
-  HardHat, Sparkles, Play, Star, ChevronLeft, Package, Boxes
+  HardHat, Sparkles, ChevronLeft, Package, Boxes
 } from 'lucide-react';
 
-const API_BASE = process.env.REACT_APP_BACKEND_URL;
-
-// WhatsApp Number
+// Configuração
+const API_BASE = process.env.REACT_APP_BACKEND_URL || '';
 const WHATSAPP_NUMBER = '5511999999999';
 const WHATSAPP_MESSAGE = 'Olá! Gostaria de saber mais sobre o GestorEPI.';
 
-// Screenshots data
+// Screenshots do sistema
 const SCREENSHOTS = [
   { 
     src: 'https://customer-assets.emergentagent.com/job_multi-epi-control/artifacts/bfpe8jgc_image.png', 
@@ -107,9 +106,7 @@ export default function LandingPage() {
     try {
       const response = await fetch(`${API_BASE}/api/contact`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
       
@@ -117,26 +114,22 @@ export default function LandingPage() {
         setFormStatus('success');
         setFormData({ nome: '', empresa: '', telefone: '', mensagem: '' });
       } else {
-        const error = await response.json();
-        console.error('Erro ao enviar:', error);
         setFormStatus('error');
       }
     } catch (error) {
-      console.error('Erro ao enviar formulário:', error);
+      console.error('Erro ao enviar:', error);
       setFormStatus('error');
     }
   };
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white overflow-x-hidden" style={{ fontFamily: "'Manrope', sans-serif" }}>
-      {/* Google Fonts */}
       <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
       
       {/* Header */}
       <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/90 backdrop-blur-xl border-b border-white/10' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
             <div className="flex items-center gap-3" data-testid="logo">
               <div className="w-12 h-12 rounded-lg overflow-hidden shadow-lg shadow-orange-500/20">
                 <img src="/logo-gestao-epi.jpg" alt="GestorEPI" className="w-full h-full object-cover" />
@@ -147,7 +140,6 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-8">
               {['Problema', 'Solução', 'Diferenciais', 'Planos', 'Contato'].map((item) => (
                 <button
@@ -161,7 +153,6 @@ export default function LandingPage() {
               ))}
             </nav>
 
-            {/* CTA Button */}
             <div className="hidden lg:flex items-center gap-4">
               <button
                 onClick={openWhatsApp}
@@ -173,7 +164,6 @@ export default function LandingPage() {
               </button>
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               className="lg:hidden p-2 text-white"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -184,7 +174,6 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="lg:hidden bg-black/95 backdrop-blur-xl border-t border-white/10 absolute w-full">
             <div className="px-4 py-6 space-y-4">
@@ -211,7 +200,6 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center pt-20 overflow-hidden" data-testid="hero-section">
-        {/* Background */}
         <div className="absolute inset-0 z-0">
           <div 
             className="absolute inset-0 bg-cover bg-center opacity-30"
@@ -223,7 +211,6 @@ export default function LandingPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Text Content */}
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 rounded-full px-4 py-2">
                 <Sparkles className="w-4 h-4 text-orange-500" />
@@ -262,7 +249,6 @@ export default function LandingPage() {
                 </button>
               </div>
 
-              {/* Trust Badges */}
               <div className="flex flex-wrap items-center gap-6 pt-4">
                 <div className="flex items-center gap-2 text-zinc-500">
                   <Shield className="w-5 h-5 text-blue-500" />
@@ -279,7 +265,6 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Hero Image */}
             <div className="relative hidden lg:block flex-1">
               <div className="relative w-full">
                 <div className="absolute -inset-4 bg-gradient-to-r from-orange-500/20 to-blue-500/20 rounded-3xl blur-3xl" />
@@ -309,7 +294,6 @@ export default function LandingPage() {
             </p>
           </div>
 
-          {/* Bento Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
               { icon: FileText, title: 'Falta de Comprovação', desc: 'Sem registros adequados de entrega, sua empresa fica vulnerável em fiscalizações e auditorias.', color: 'red' },
@@ -321,12 +305,12 @@ export default function LandingPage() {
             ].map((item, i) => (
               <div
                 key={i}
-                className={`group relative bg-[#141414] border border-zinc-800/50 rounded-xl p-6 hover:border-${item.color}-500/50 transition-all duration-300 overflow-hidden`}
+                className="group relative bg-[#141414] border border-zinc-800/50 rounded-xl p-6 hover:border-red-500/50 transition-all duration-300 overflow-hidden"
                 data-testid={`problem-card-${i}`}
               >
-                <div className={`absolute top-0 right-0 w-32 h-32 bg-${item.color}-500/5 rounded-full blur-3xl`} />
-                <div className={`w-12 h-12 rounded-lg bg-${item.color}-500/10 flex items-center justify-center mb-4`}>
-                  <item.icon className={`w-6 h-6 text-${item.color}-500`} />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-full blur-3xl" />
+                <div className="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center mb-4">
+                  <item.icon className="w-6 h-6 text-red-500" />
                 </div>
                 <h3 className="text-lg font-bold mb-2">{item.title}</h3>
                 <p className="text-sm text-zinc-400 leading-relaxed">{item.desc}</p>
@@ -350,7 +334,6 @@ export default function LandingPage() {
             </p>
           </div>
 
-          {/* Stock Control Highlight */}
           <div className="mb-6 p-6 sm:p-8 bg-gradient-to-r from-blue-600/10 to-cyan-600/10 border border-blue-500/30 rounded-2xl">
             <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
               <div className="w-20 h-20 rounded-2xl bg-blue-500/20 flex items-center justify-center flex-shrink-0">
@@ -361,8 +344,7 @@ export default function LandingPage() {
                 <p className="text-zinc-400 leading-relaxed">
                   Gerencie todo o estoque de EPIs com <strong className="text-white">estoque mínimo e máximo</strong>, 
                   alertas automáticos de reposição, controle de <strong className="text-white">validade</strong>, 
-                  entradas e saídas, e relatórios de consumo por período. 
-                  Nunca mais fique sem EPIs disponíveis para seus colaboradores.
+                  entradas e saídas, e relatórios de consumo por período.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3 justify-center lg:justify-end">
@@ -373,7 +355,6 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Suppliers & Purchase Tracking Highlight */}
           <div className="mb-12 p-6 sm:p-8 bg-gradient-to-r from-purple-600/10 to-pink-600/10 border border-purple-500/30 rounded-2xl">
             <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
               <div className="w-20 h-20 rounded-2xl bg-purple-500/20 flex items-center justify-center flex-shrink-0">
@@ -383,9 +364,7 @@ export default function LandingPage() {
                 <h3 className="text-2xl font-bold mb-2">Cadastro de Fornecedores e Rastreamento de Compras</h3>
                 <p className="text-zinc-400 leading-relaxed">
                   Cadastre todos os seus <strong className="text-white">fornecedores de EPI</strong> com CNPJ, contato e telefone.
-                  Vincule cada compra ao fornecedor e tenha <strong className="text-white">rastreabilidade completa</strong>: 
-                  data da compra, nota fiscal, valor unitário, lote e validade. 
-                  Saiba exatamente de onde veio cada EPI entregue aos seus colaboradores.
+                  Vincule cada compra ao fornecedor e tenha <strong className="text-white">rastreabilidade completa</strong>.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3 justify-center lg:justify-end">
@@ -396,7 +375,6 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Features Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { icon: Users, title: 'Cadastro Completo', desc: 'Gestão completa de colaboradores com foto, documentos e histórico.' },
@@ -435,18 +413,16 @@ export default function LandingPage() {
             </h2>
           </div>
 
-          {/* Interactive Screenshots Gallery */}
+          {/* Screenshots Gallery */}
           <div className="mb-20">
             <div className="text-center mb-10">
               <h3 className="text-2xl font-bold mb-3">Veja o Sistema em Ação</h3>
               <p className="text-zinc-400">Navegue pelas telas e conheça todas as funcionalidades do GestorEPI</p>
             </div>
             
-            {/* Main Screenshot with Navigation */}
             <div className="relative max-w-5xl mx-auto mb-8">
               <div className="absolute -inset-4 bg-gradient-to-r from-orange-500/20 to-blue-500/20 rounded-3xl blur-3xl" />
               <div className="relative bg-[#0A0A0A] border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl">
-                {/* Main Image */}
                 <div 
                   className="relative cursor-pointer"
                   onClick={() => setLightboxOpen(true)}
@@ -457,18 +433,15 @@ export default function LandingPage() {
                     alt={SCREENSHOTS[currentScreenshot].title}
                     className="w-full h-auto transition-opacity duration-300"
                   />
-                  {/* Badge */}
                   <div className="absolute top-4 left-4 bg-orange-500 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                     {SCREENSHOTS[currentScreenshot].title}
                   </div>
-                  {/* Click to expand hint */}
                   <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm text-white text-xs font-medium px-3 py-1 rounded-full flex items-center gap-1">
                     <Eye className="w-3 h-3" />
                     Clique para ampliar
                   </div>
                 </div>
 
-                {/* Navigation Arrows */}
                 <button
                   onClick={(e) => { e.stopPropagation(); prevScreenshot(); }}
                   className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/70 hover:bg-orange-600 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 group"
@@ -484,7 +457,6 @@ export default function LandingPage() {
                   <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform" />
                 </button>
 
-                {/* Info Bar */}
                 <div className="p-6 border-t border-zinc-800 bg-[#0A0A0A]">
                   <div className="flex items-center justify-between">
                     <div>
@@ -499,7 +471,6 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Thumbnail Navigation */}
             <div className="flex justify-center gap-3 flex-wrap max-w-4xl mx-auto">
               {SCREENSHOTS.map((item, i) => (
                 <button
@@ -517,9 +488,6 @@ export default function LandingPage() {
                     alt={item.title}
                     className="w-24 h-16 sm:w-32 sm:h-20 object-cover object-top"
                   />
-                  {currentScreenshot === i && (
-                    <div className="absolute inset-0 bg-orange-500/20" />
-                  )}
                 </button>
               ))}
             </div>
@@ -622,8 +590,8 @@ export default function LandingPage() {
                 className="group bg-gradient-to-br from-[#141414] to-[#1A1A1A] border border-zinc-800 rounded-xl p-8 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 transition-all duration-300"
                 data-testid={`benefit-${i}`}
               >
-                <div className={`w-14 h-14 rounded-xl bg-${item.color}-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                  <item.icon className={`w-7 h-7 text-${item.color}-500`} />
+                <div className="w-14 h-14 rounded-xl bg-green-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <item.icon className="w-7 h-7 text-green-500" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                 <p className="text-zinc-400 leading-relaxed">{item.desc}</p>
@@ -646,9 +614,8 @@ export default function LandingPage() {
             </p>
           </div>
 
-          {/* Main Pricing Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-4 mb-12">
-            {/* 12 months - Base */}
+            {/* 12 months */}
             <div className="bg-[#141414] border-2 border-green-500/30 rounded-2xl p-8 hover:border-green-500/50 transition-all duration-300 relative" data-testid="plan-12">
               <div className="absolute -top-3 left-6 bg-green-500 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                 Base
@@ -659,19 +626,9 @@ export default function LandingPage() {
                   <span className="text-5xl font-black">R$ 560</span>
                   <span className="text-zinc-500">/mês</span>
                 </div>
-                <p className="text-sm text-zinc-400 mt-3 leading-relaxed">
-                  Ideal para empresas que querem iniciar o controle de EPI com segurança e organização.
-                </p>
               </div>
               <ul className="space-y-3 mb-8">
-                {[
-                  'Sistema completo liberado',
-                  'Sem limite de colaboradores',
-                  'Sem taxa por inativos',
-                  'Sem taxa por CNPJ',
-                  'Treinamento inicial incluso',
-                  'Suporte padrão'
-                ].map((item, i) => (
+                {['Sistema completo liberado', 'Sem limite de colaboradores', 'Sem taxa por inativos', 'Sem taxa por CNPJ', 'Treinamento inicial incluso', 'Suporte padrão'].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-sm text-zinc-300">
                     <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
                     {item}
@@ -686,7 +643,7 @@ export default function LandingPage() {
               </button>
             </div>
 
-            {/* 24 months - Featured (Mais Escolhido) */}
+            {/* 24 months - Featured */}
             <div className="relative bg-gradient-to-b from-[#1A1A1A] to-[#141414] border-2 border-orange-500 rounded-2xl p-8 shadow-[0_0_50px_rgba(234,88,12,0.25)] lg:scale-105 z-10" data-testid="plan-24">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full shadow-lg">
                 Mais Escolhido
@@ -698,21 +655,9 @@ export default function LandingPage() {
                   <span className="text-zinc-500">/mês</span>
                 </div>
                 <p className="text-sm text-green-500 font-semibold">Economia de 10%</p>
-                <p className="text-sm text-zinc-400 mt-3 leading-relaxed">
-                  Mais estabilidade, suporte prioritário e personalização para sua empresa.
-                </p>
               </div>
               <ul className="space-y-3 mb-8">
-                {[
-                  'Tudo do plano 12 meses',
-                  'Implantação prioritária',
-                  'Logo personalizado no sistema',
-                  'Ícone personalizado (app/sistema)',
-                  'Suporte prioritário',
-                  '1 personalização gratuita',
-                  '1 treinamento adicional',
-                  'Consultoria inicial de uso'
-                ].map((item, i) => (
+                {['Tudo do plano 12 meses', 'Implantação prioritária', 'Logo personalizado no sistema', 'Ícone personalizado (app/sistema)', 'Suporte prioritário', '1 personalização gratuita', '1 treinamento adicional', 'Consultoria inicial de uso'].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-sm text-zinc-300">
                     <CheckCircle className="w-5 h-5 text-orange-500 flex-shrink-0" />
                     {item}
@@ -727,7 +672,7 @@ export default function LandingPage() {
               </button>
             </div>
 
-            {/* 36 months - Melhor Custo-Benefício */}
+            {/* 36 months */}
             <div className="bg-[#141414] border-2 border-red-500/30 rounded-2xl p-8 hover:border-red-500/50 transition-all duration-300 relative" data-testid="plan-36">
               <div className="absolute -top-3 left-6 bg-red-500 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                 Melhor Custo-Benefício
@@ -739,21 +684,9 @@ export default function LandingPage() {
                   <span className="text-zinc-500">/mês</span>
                 </div>
                 <p className="text-sm text-green-500 font-semibold">Economia de 20%</p>
-                <p className="text-sm text-zinc-400 mt-3 leading-relaxed">
-                  Plano completo com máximo suporte, personalização e acompanhamento contínuo.
-                </p>
               </div>
               <ul className="space-y-3 mb-8">
-                {[
-                  'Tudo do plano 24 meses',
-                  'Implantação EXPRESSA',
-                  'Suporte VIP prioritário',
-                  'Até 6 personalizações gratuitas',
-                  'Consultoria contínua (trimestral)',
-                  'Relatórios personalizados',
-                  'Acompanhamento de implantação',
-                  'Suporte para auditorias'
-                ].map((item, i) => (
+                {['Tudo do plano 24 meses', 'Implantação EXPRESSA', 'Suporte VIP prioritário', 'Até 6 personalizações gratuitas', 'Consultoria contínua (trimestral)', 'Relatórios personalizados', 'Acompanhamento de implantação', 'Suporte para auditorias'].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-sm text-zinc-300">
                     <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
                     {item}
@@ -769,7 +702,6 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Additional Info */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-[#1A1A1A] border border-zinc-800 rounded-xl p-6 text-center">
               <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mx-auto mb-4">
@@ -902,7 +834,7 @@ export default function LandingPage() {
                   </div>
                 </a>
                 <a
-                  href="mailto:contato@gestorepi.com.br"
+                  href="mailto:alexandre_santos@prismaxshop.com.br"
                   className="flex items-center gap-4 p-4 bg-[#141414] border border-zinc-800 rounded-xl hover:border-blue-500/50 transition-colors group"
                   data-testid="contact-email"
                 >
@@ -911,13 +843,12 @@ export default function LandingPage() {
                   </div>
                   <div>
                     <p className="font-bold group-hover:text-blue-400 transition-colors">E-mail</p>
-                    <p className="text-sm text-zinc-500">contato@gestorepi.com.br</p>
+                    <p className="text-sm text-zinc-500">alexandre_santos@prismaxshop.com.br</p>
                   </div>
                 </a>
               </div>
             </div>
 
-            {/* Contact Form */}
             <div className="bg-[#141414] border border-zinc-800 rounded-2xl p-8">
               <form onSubmit={handleFormSubmit} className="space-y-6">
                 <div>
@@ -1030,8 +961,7 @@ export default function LandingPage() {
       {/* WhatsApp Floating Button */}
       <button
         onClick={openWhatsApp}
-        className="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 z-50 flex items-center justify-center animate-pulse"
-        style={{ animationDuration: '2s' }}
+        className="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 z-50 flex items-center justify-center"
         data-testid="whatsapp-floating"
         aria-label="Falar no WhatsApp"
       >
@@ -1045,7 +975,6 @@ export default function LandingPage() {
           onClick={() => setLightboxOpen(false)}
           data-testid="lightbox-modal"
         >
-          {/* Close Button */}
           <button
             onClick={() => setLightboxOpen(false)}
             className="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors"
@@ -1053,7 +982,6 @@ export default function LandingPage() {
             <X className="w-6 h-6" />
           </button>
 
-          {/* Navigation */}
           <button
             onClick={(e) => { e.stopPropagation(); prevScreenshot(); }}
             className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/10 hover:bg-orange-600 rounded-full flex items-center justify-center text-white transition-colors"
@@ -1067,7 +995,6 @@ export default function LandingPage() {
             <ChevronRight className="w-8 h-8" />
           </button>
 
-          {/* Image */}
           <div className="max-w-6xl max-h-[85vh] overflow-auto" onClick={(e) => e.stopPropagation()}>
             <img
               src={SCREENSHOTS[currentScreenshot].src}
@@ -1077,7 +1004,7 @@ export default function LandingPage() {
             <div className="text-center mt-4">
               <h3 className="text-xl font-bold text-white">{SCREENSHOTS[currentScreenshot].title}</h3>
               <p className="text-zinc-400 mt-1">{SCREENSHOTS[currentScreenshot].desc}</p>
-              <p className="text-zinc-500 text-sm mt-2">{currentScreenshot + 1} de {SCREENSHOTS.length} • Use as setas ou clique fora para fechar</p>
+              <p className="text-zinc-500 text-sm mt-2">{currentScreenshot + 1} de {SCREENSHOTS.length}</p>
             </div>
           </div>
         </div>
