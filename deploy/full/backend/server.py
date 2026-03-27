@@ -16,9 +16,9 @@ app.add_middleware(
     allow_origins=['*'],
     allow_methods=['*'],
     allow_headers=['*'],
+    expose_headers=['*'],
 )
 
-# Resend Config
 resend.api_key = os.environ.get('RESEND_API_KEY')
 CONTACT_EMAIL = os.environ.get('CONTACT_EMAIL', 'alexandre_santos@prismaxshop.com.br')
 
@@ -62,29 +62,18 @@ async def send_contact_form(data: ContactFormRequest):
                     <td style="padding: 10px 0; color: #333;">{data.mensagem or 'Não informada'}</td>
                 </tr>
             </table>
-            <div style="margin-top: 30px; padding: 15px; background: #fff3e0; border-radius: 8px; border-left: 4px solid #f97316;">
-                <p style="margin: 0; color: #666; font-size: 14px;">
-                    <strong>Próximo passo:</strong> Entre em contato com o cliente o mais breve possível.
-                </p>
-            </div>
         </div>
     </div>
     """
     
-    params = {
-        "from": "GestorEPI <onboarding@resend.dev>",
-        "to": [CONTACT_EMAIL],
-        "subject": f"Nova Solicitação: {data.empresa} - {data.nome}",
-        "html": html_content
-    }
-    
     try:
-        email = resend.Emails.send(params)
-        return {
-            "status": "success",
-            "message": "Mensagem enviada com sucesso!",
-            "email_id": email.get("id")
-        }
+        email = resend.Emails.send({
+            "from": "GestorEPI <onboarding@resend.dev>",
+            "to": [CONTACT_EMAIL],
+            "subject": f"Nova Solicitação: {data.empresa} - {data.nome}",
+            "html": html_content
+        })
+        return {"status": "success", "message": "Mensagem enviada com sucesso!", "email_id": email.get("id")}
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
