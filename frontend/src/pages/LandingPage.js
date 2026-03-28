@@ -833,19 +833,6 @@ export default function LandingPage() {
                     <p className="text-sm text-zinc-500">Atendimento rápido</p>
                   </div>
                 </a>
-                <a
-                  href="mailto:alexandre_santos@prismaxshop.com.br"
-                  className="flex items-center gap-4 p-4 bg-[#141414] border border-zinc-800 rounded-xl hover:border-blue-500/50 transition-colors group"
-                  data-testid="contact-email"
-                >
-                  <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-blue-500" />
-                  </div>
-                  <div>
-                    <p className="font-bold group-hover:text-blue-400 transition-colors">E-mail</p>
-                    <p className="text-sm text-zinc-500">alexandre_santos@prismaxshop.com.br</p>
-                  </div>
-                </a>
               </div>
             </div>
 
